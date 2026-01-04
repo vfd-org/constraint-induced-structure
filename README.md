@@ -32,7 +32,7 @@ This is purely a **constraint experiment** for studying how penalty functions sh
 ```bash
 # Clone and install
 git clone https://github.com/vfd-org/constraint-induced-structure
-cd cise
+cd constraint-induced-structure
 pip install -e .
 
 # Run the release experiment (<2 min on CPU)
