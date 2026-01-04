@@ -1,0 +1,77 @@
+# CISE Release Configuration
+# Constraint-Induced Structure Explorer v1.0.0
+#
+# Optimized for GitHub release: produces curated figures in <2 minutes on CPU.
+# Uses conservative beta values to avoid extreme ESS collapse.
+
+# Random seed for reproducibility
+seed: 1337
+
+# Sample count tuned for fast CPU execution (<2 min)
+n_samples: 8000
+
+# Vector parameters (P1: x in R^d)
+vector:
+  dim: 32
+
+# Matrix parameters (P2: M in R^{k x k})
+matrix:
+  size: 6
+
+# Conservative beta sweep (avoids extreme ESS collapse)
+# Higher values cause measure concentration; interpret with ESS in mind
+beta_sweep:
+  - 0.0
+  - 0.25
+  - 0.5
+  - 1.0
+
+# Constraint configurations
+constraints:
+  # Constraints for vectors
+  vectors:
+    - smoothness
+    - l1
+
+  # Constraints for matrices
+  matrices:
+    - lowrank
+    - l1
+
+# Use Gaussian sampler only for cleaner release figures
+samplers:
+  - gaussian
+
+# Constraint-specific parameters
+constraint_params:
+  smoothness:
+    scale: 1.0
+
+  l1:
+    scale: 0.1  # Scaled down for balanced effect
+
+  lowrank:
+    target_rank: 2
+    scale: 1.0
+
+  hierarchy:
+    delta: -0.5
+    epsilon: 1.0e-10
+    scale: 1.0
+
+# Release figure selection (curated set only)
+release_figures:
+  - ess_vs_beta
+  - energy_histogram
+  - norm_distribution
+  - gini_distribution
+  - pca_variance
+  - pca_scatter
+  - sv_spectrum
+  - hierarchy_curve
+
+# Anti-dismissal control settings
+control:
+  enabled: true
+  type: norm_matched  # Options: norm_matched, magnitude_neutral
+  n_bins: 50  # For norm-matching histogram

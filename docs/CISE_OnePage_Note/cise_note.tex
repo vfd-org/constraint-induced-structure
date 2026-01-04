@@ -1,0 +1,118 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\title{\textbf{CISE: Constraint-Induced Structure Explorer}\\[0.3em]
+\large A Computational Experiment on Constraint-Induced Structure}
+\author{Lee Smart\\
+\small Vibrational Field Dynamics Institute\\
+\small \texttt{contact@vibrationalfielddynamics.org}}
+\date{}
+
+\begin{document}
+
+\maketitle
+\vspace{-1em}
+
+\hrule
+\vspace{0.5em}
+
+\section*{What It Is}
+
+CISE is a computational framework that demonstrates how simple coherence constraints induce non-trivial structure in random ensembles. Given baseline samples from standard distributions (Gaussian, Uniform), we apply constraints via energy-based reweighting:
+\[
+w(z) = \exp(-\beta \cdot E(z))
+\]
+where $E(z)$ is a penalty function (smoothness, L1, low-rank, hierarchy) and $\beta$ controls constraint strength.
+
+\textbf{Core finding:} Constraints induce measurable structure---dimensional concentration, hierarchical decay, and clustering---that persists even after controlling for norm shrinkage.
+
+\section*{What It Is NOT}
+
+\begin{itemize}[nosep,leftmargin=1.5em]
+    \item Not a physics model or simulation
+    \item Not a claim about physical reality
+    \item Not a predictor of experimental outcomes
+    \item Not an implementation of any physical theory
+    \item Does not require GPU, internet, or external APIs
+\end{itemize}
+
+This is purely a \textbf{constraint experiment} studying how penalty functions shape distributions.
+
+\section*{Key Results}
+
+\vspace{-0.5em}
+\begin{center}
+\small
+\begin{tabular}{lll}
+\toprule
+\textbf{Metric} & \textbf{Change} & \textbf{Interpretation} \\
+\midrule
+Norm & Decreases & Constraints favor smaller magnitudes \\
+Gini coefficient & Increases & Values become more unequal \\
+PCA dimensions (90\%) & Decreases & Dimensional concentration \\
+Rank proxy (matrices) & Decreases & Effective low-rank structure \\
+ESS ratio & Decreases with $\beta$ & Measure concentration \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{Key Figures}
+
+\textit{(Insert from \texttt{outputs/release\_run/figures\_release/})}
+
+\begin{enumerate}[nosep,leftmargin=1.5em]
+    \item \textbf{ESS vs $\beta$}: Effective sample size drops as constraint strength increases
+    \item \textbf{Norm distribution}: Constrained samples shift to lower norms
+    \item \textbf{PCA variance}: Variance concentrates in fewer dimensions
+    \item \textbf{SV spectrum}: Low-rank constraint suppresses smaller singular values
+\end{enumerate}
+
+\section*{Anti-Dismissal Control}
+
+\textbf{Critique:} ``Isn't this just norm shrinkage?''
+
+\textbf{Control:} We construct a norm-matched baseline whose norm distribution matches the constrained distribution. Structure differences persist---the participation ratio and Gini deltas remain non-zero after norm matching.
+
+This demonstrates that constraint \textit{geometry}, not just magnitude reduction, drives structural changes.
+
+\section*{Non-Claims}
+
+\begin{itemize}[nosep,leftmargin=1.5em]
+    \item Does not claim to explain any physical phenomenon
+    \item Does not predict experimental outcomes
+    \item Does not propose modifications to physical theories
+    \item Does not claim universality beyond the tested ensembles
+    \item Results are distributional observations, not physical laws
+\end{itemize}
+
+\section*{Reproducibility}
+
+Deterministic with fixed seed (1337). Runs in $<$2 minutes on CPU.
+
+\begin{verbatim}
+pip install -e .
+python scripts/run_release.py
+\end{verbatim}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\textbf{Contact:} Lee Smart, Vibrational Field Dynamics Institute --- \texttt{contact@vibrationalfielddynamics.org}
+
+\textbf{Repository:} \url{https://github.com/vfd-org/constraint-induced-structure}
+
+\textbf{License:} MIT
+
+\vspace{0.3em}
+\textit{This is a constraint experiment, not a physics claim.}
+
+\end{document}

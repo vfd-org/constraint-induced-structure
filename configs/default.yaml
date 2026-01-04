@@ -1,0 +1,63 @@
+# CISE Default Configuration
+# Constraint-Induced Structure Explorer v1
+#
+# This configuration defines the default experiment parameters.
+# Designed to run in under 2 minutes on CPU.
+
+# Random seed for reproducibility
+seed: 1337
+
+# Number of samples per ensemble
+# Keep moderate for CPU performance
+n_samples: 10000
+
+# Vector parameters (P1: x in R^d)
+vector:
+  dim: 32
+
+# Matrix parameters (P2: M in R^{k x k})
+matrix:
+  size: 6
+
+# Beta values for reweighting sweep
+# w(z) = exp(-beta * E(z))
+# beta=0 gives uniform weights (baseline)
+beta_sweep:
+  - 0.0
+  - 0.5
+  - 1.0
+  - 2.0
+
+# Constraint configurations
+constraints:
+  # Constraints to apply to vectors
+  vectors:
+    - smoothness
+    - l1
+
+  # Constraints to apply to matrices
+  matrices:
+    - lowrank
+    - l1
+
+# Samplers to use for baseline generation
+samplers:
+  - gaussian
+  - uniform
+
+# Constraint-specific parameters
+constraint_params:
+  smoothness:
+    scale: 1.0
+
+  l1:
+    scale: 1.0
+
+  lowrank:
+    target_rank: 2
+    scale: 1.0
+
+  hierarchy:
+    delta: -0.5
+    epsilon: 1.0e-10
+    scale: 1.0
