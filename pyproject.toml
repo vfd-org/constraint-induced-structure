@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cise"
+version = "1.0.0"
+description = "Constraint-Induced Structure Explorer - A computational experiment engine for studying constraint effects on ensemble distributions"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [
+    {name = "Lee Smart", email = "contact@vibrationalfielddynamics.org"}
+]
+keywords = ["constraints", "ensemble", "sampling", "statistics", "experiments"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "numpy>=1.21.0",
+    "scipy>=1.7.0",
+    "matplotlib>=3.5.0",
+    "scikit-learn>=1.0.0",
+    "pyyaml>=6.0",
+    "click>=8.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+notebooks = [
+    "jupyter>=1.0.0",
+    "ipykernel>=6.0.0",
+]
+
+[project.scripts]
+cise = "cise.cli:main"
+
+[project.urls]
+Repository = "https://github.com/vfd-org/constraint-induced-structure"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cise*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py38", "py39", "py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"

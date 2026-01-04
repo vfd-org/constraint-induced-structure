@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "CISE: Constraint-Induced Structure Explorer"
+version: 1.0.0
+date-released: 2024-01-01
+authors:
+  - family-names: Smart
+    given-names: Lee
+    email: contact@vibrationalfielddynamics.org
+    affiliation: Vibrational Field Dynamics Institute
+abstract: >
+  A computational experiment framework demonstrating that simple coherence
+  constraints induce non-trivial structure in random ensembles. CISE applies
+  energy-based reweighting to baseline samples and measures resulting
+  structural changes including dimensional concentration, hierarchical decay,
+  and clustering.
+keywords:
+  - constraints
+  - ensemble methods
+  - statistical structure
+  - energy-based reweighting
+  - computational experiment
+license: MIT
+repository-code: "https://github.com/vfd-org/constraint-induced-structure"
+url: "https://github.com/vfd-org/constraint-induced-structure"
+contact:
+  - email: contact@vibrationalfielddynamics.org
+    family-names: Smart
+    given-names: Lee
+preferred-citation:
+  type: software
+  authors:
+    - family-names: Smart
+      given-names: Lee
+  title: "CISE: Constraint-Induced Structure Explorer"
+  version: 1.0.0
+  year: 2024
+  url: "https://github.com/vfd-org/constraint-induced-structure"
